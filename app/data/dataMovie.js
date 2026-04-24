@@ -17,4 +17,13 @@ DataMovie.getMovies = async function(){
     return data;
 }
 
+DataMovie.addMovie = async function(formData){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=addmovie", {
+        method: "POST",
+        body: formData
+    });
+    let data = await answer.json();
+    return data;
+}
+
 export {DataMovie};
