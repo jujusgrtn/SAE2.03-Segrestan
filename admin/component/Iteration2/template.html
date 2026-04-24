@@ -1,12 +1,12 @@
 <div class="addMovie">
     <h3 class="addMovie__title">Ajouter un film</h3>
     <form class="addMovie__form">
-        <input required type="text" name="title" placeholder="Titre du film">
-        <input type="text" name="director" placeholder="Realisateur/Realisatrice du Film">
-        <input type="number" name="year" placeholder="Annee de sortie du film" >
-        <input type="number" name="length" placeholder="Duree du film en minutes">
+        <input required class="addMovie__champs" type="text" name="title" placeholder="Titre du film" >
+        <input class="addMovie__champs" type="text" name="director" placeholder="Realisateur/Realisatrice du Film">
+        <input class="addMovie__champs" type="number" name="year" placeholder="Annee de sortie du film" >
+        <input class="addMovie__champs" type="number" name="length" placeholder="Duree du film en minutes">
 
-        <select name="category" id="category" placeholder="Genre du film">
+        <select class="addMovie__champs" name="category" id="category" placeholder="Genre du film">
             <option value="1">Action</option>
             <option value="2">Comedie</option>
             <option value="3">Drame</option>
@@ -19,11 +19,11 @@
             <option value="10">Documentaire</option>
         </select>
 
-        <textarea name="description" placeholder="Description du film" rows="4"></textarea>
-        <input type="text" name="image" placeholder="Nom du fichier de l'affiche du film">
-        <input type="url" name="trailer" placeholder="URL du trailer du film">
-        <input type="number" name="min_age" placeholder="Age minimum recommande pour le film">
-        <input onclick="{{handler}}" type="button" value="Ajouter le film" name="todo">
+        <textarea class="addMovie__champs" name="description" placeholder="Description du film" rows="4"></textarea>
+        <input class="addMovie__champs" type="text" name="image" placeholder="Nom du fichier de l'affiche du film">
+        <input class="addMovie__champs" type="url" name="trailer" placeholder="URL du trailer du film">
+        <input class="addMovie__champs" type="number" name="min_age" placeholder="Age minimum recommande pour le film">
+        <input class="addMovie__btn" onclick="{{handler}}" type="button" value="Ajouter le film" name="todo">
 
     </form>
 </div>
