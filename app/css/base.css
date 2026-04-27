@@ -6,4 +6,4 @@
 @import "./layout.css" layer(utilities);
 
 @import "../component/NavBar/style.css" layer(components);
-@import "../component/Iteration1/style.css" layer(components);
+@import "../component/MovieList/style.css" layer(components);

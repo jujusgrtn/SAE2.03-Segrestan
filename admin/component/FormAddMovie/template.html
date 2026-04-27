@@ -1,12 +1,12 @@
 <div class="addMovie">
     <h3 class="addMovie__title">Ajouter un film</h3>
     <form class="addMovie__form">
-        <input required class="addMovie__champs" type="text" name="title" placeholder="Titre du film" >
+        <input required class="addMovie__champs" type="text" name="name" placeholder="Titre du film" >
         <input class="addMovie__champs" type="text" name="director" placeholder="Realisateur/Realisatrice du Film">
         <input class="addMovie__champs" type="number" name="year" placeholder="Annee de sortie du film" >
         <input class="addMovie__champs" type="number" name="length" placeholder="Duree du film en minutes">
 
-        <select class="addMovie__champs" name="category" id="category" placeholder="Genre du film">
+        <select class="addMovie__champs" name="id_category" id="id_category">
             <option value="1">Action</option>
             <option value="2">Comedie</option>
             <option value="3">Drame</option>
@@ -19,7 +19,7 @@
             <option value="10">Documentaire</option>
         </select>
 
-        <textarea class="addMovie__champs" name="description" placeholder="Description du film" rows="4"></textarea>
+        <textarea class="addMovie__champs" name="description" placeholder="Description du film" ></textarea>
         <input class="addMovie__champs" type="text" name="image" placeholder="Nom du fichier de l'affiche du film">
         <input class="addMovie__champs" type="url" name="trailer" placeholder="URL du trailer du film">
         <input class="addMovie__champs" type="number" name="min_age" placeholder="Age minimum recommande pour le film">

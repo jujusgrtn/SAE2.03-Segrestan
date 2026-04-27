@@ -27,25 +27,53 @@ function readMoviesController(){
 }
 
 function addMovieController() {
-    $name = $_POST['title'] ?? null;
-    $director = $_POST['director'] ?? null;
-    $year = !empty($_POST['year']) ? (int)$_POST['year'] : null;
-    $length = !empty($_POST['length']) ? (int)$_POST['length'] : null;
-    $description = $_POST['description'] ?? null;
-    $id_category = $_POST['category'] ?? null;
-    $image = $_POST['image'] ?? null;   
-    $trailer = $_POST['trailer'] ?? null;
-    $min_age = !empty($_POST['min_age']) ? (int)$_POST['min_age'] : null;
-
-    if (!$name || !$director || !$year) {
-        return ["status" => "error", "message" => "Champs obligatoires"];
-    }   
-
-    $result = addMovie($name, $director, $year, $length, $description, $id_category, $image, $trailer, $min_age);
-    if ($result == true) {
-        return ["status" => "success", "message" => "Film ajouté avec succès"];
-    } else {
-        return ["status" => "error", "message" => "Erreur lors de l'ajout du film"];
+    if (isset($_REQUEST['name'])==false || empty($_REQUEST['name'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['director'])==false || empty($_REQUEST['director'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['year'])==false || empty($_REQUEST['year'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['length'])==false || empty($_REQUEST['length'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['description'])==false || empty($_REQUEST['description'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['id_category'])==false || empty($_REQUEST['id_category'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['image'])==false || empty($_REQUEST['image'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['trailer'])==false || empty($_REQUEST['trailer'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['min_age'])==false || empty($_REQUEST['min_age'])==true){
+        return false;
     }
 
+    $name = $_REQUEST['name'];
+    $director = $_REQUEST['director'];
+    $year = (int)$_REQUEST['year'];
+    $length = (int)$_REQUEST['length'];
+    $description = $_REQUEST['description'];
+    $id_category = (int)$_REQUEST['id_category'];
+    $image = $_REQUEST['image'];
+    $trailer = $_REQUEST['trailer'];
+    $min_age = (int)$_REQUEST['min_age'];
+
+    $result = addMovie($name, $director, $year, $length, $description, $id_category, $image, $trailer, $min_age);
+    return $result;
+}
+
+function getMovieDetailController(){
+    if (isset($_REQUEST['id'])==false || empty($_REQUEST['id'])==true){
+        return false;
+    }
+    $id = (int)$_REQUEST['id'];
+    $movie = getMovie($id);
+    return $movie;
 }

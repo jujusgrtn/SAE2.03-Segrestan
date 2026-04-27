@@ -1,0 +1,14 @@
+<div class="movie__detail">
+    <button class="movie__detail-retour" onclick="{{hAccueil}}">Retour</button>
+    <div class="movie__detail-content">
+        <img class="movie__detail-image" src="../server/images/{{image}}" alt="Affiche de {{name}}">
+        <div class="movie__detail-infos">
+            <h4 class="movie__detail-title">{{name}}</h4>
+            <p class="movie__detail-subinfo">{{director}}, {{year}}, {{length}} min, {{min_age}}+</p>
+            <p class="movie__detail-description">{{description}}</p>
+        </div>
+    </div>
+    <div class="movie__detail-trailer">
+        <iframe src="{{trailer}}" allowfullscreen></iframe>
+    </div>
+</div>

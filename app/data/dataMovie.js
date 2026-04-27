@@ -3,7 +3,7 @@ let HOST_URL = "https://mmi.unilim.fr/~segrestan1/SAE2.03-Segrestan";
 
 let DataMovie = {};
 
-DataMovie.getMovies = async function(){
+DataMovie.getAllMovies = async function(){
     // fetch permet d'envoyer une requête HTTP à l'URL spécifiée. 
     // L'URL est construite en concaténant HOST_URL à "/server/script.php?direction=" et la valeur de la variable dir. 
     // L'URL finale dépend de la valeur de HOST_URL et de dir.
@@ -18,10 +18,17 @@ DataMovie.getMovies = async function(){
 }
 
 DataMovie.addMovie = async function(formData){
-    let answer = await fetch(HOST_URL + "/server/script.php?todo=addmovie", {
+    let config = {
         method: "POST",
         body: formData
-    });
+    };
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=addmovie", config);
+    let data = await answer.json();
+    return data;            
+}
+
+DataMovie.requestMovieDetails = async function(id){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=getmoviedetail&id=" + id);
     let data = await answer.json();
     return data;
 }

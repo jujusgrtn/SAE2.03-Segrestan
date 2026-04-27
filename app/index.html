@@ -15,7 +15,8 @@
     <script type="module">
       import {DataMovie} from "./data/dataMovie.js";
       import { NavBar } from "./component/NavBar/script.js";
-      import { Iteration1 } from "./component/Iteration1/script.js";
+      import { MovieList } from "./component/MovieList/script.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -30,10 +31,21 @@
 
       C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
-        let movies = await DataMovie.getMovies();
-        V.renderIteration1(movies);
-      }; 
+        let movies = await DataMovie.getAllMovies();
+        V.renderMovieList(movies);
+      };
 
+      C.handlerAccueil = async function () {
+        let movies = await DataMovie.getMovies();
+        V.renderMovieList(movies);
+      };
+
+      C.handlerDetail = async function (id) {
+        let movie = await DataMovie.requestMovieDetails(id);
+        if (movie) {
+          V.renderMovieDetail(movie);
+        }
+      };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
@@ -45,18 +57,23 @@
        * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
        * formaté par le composant NavBar.
        */
-      V.renderNavBar = function (hAbout) {
+      V.renderNavBar = function (hAbout, hAccueil) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
+        header.innerHTML = NavBar.format(hAbout, hAccueil);
       };
 
-      V.renderIteration1 = function (movies) {
+      V.renderMovieList = function (movies) {
         let content = document.querySelector("#content");
         let html = "";
         for (let movie of movies) {
-          html += Iteration1.format(movie);
+          html += MovieList.format(movie, "window.C.handlerDetail(" + movie.id + ")");
         }
         content.innerHTML = html;
+      };
+
+      V.renderMovieDetail = function (movie) {
+        let content = document.querySelector("#content");
+        content.innerHTML = MovieDetail.format(movie, "C.handlerAccueil()");
       };
 
 
