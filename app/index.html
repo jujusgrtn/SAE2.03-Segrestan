@@ -30,7 +30,7 @@
       };
 
       C.start = async function () {
-        V.renderNavBar("C.handlerAbout()");
+        V.renderNavBar("C.handlerAbout()", "C.handlerAccueil()");
         let movies = await DataMovie.getAllMovies();
         V.renderMovieList(movies);
       };
@@ -64,10 +64,7 @@
 
       V.renderMovieList = function (movies) {
         let content = document.querySelector("#content");
-        let html = "";
-        for (let movie of movies) {
-          html += MovieList.format(movie, "window.C.handlerDetail(" + movie.id + ")");
-        }
+        let html = MovieList.formatMany(movies, "C.handlerDetail");
         content.innerHTML = html;
       };
 
