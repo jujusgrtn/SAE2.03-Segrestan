@@ -4,7 +4,6 @@
   flex-direction: column;
   gap : 1rem;
   border-radius: 8px;
-  overflow: hidden;
 }
 
 .movie__list { 
@@ -18,8 +17,9 @@
 
 .movie__card-img {
   width: 100%;
-  aspect-ratio: 2/3;
+  aspect-ratio: 3/4;
   display: block;
+  border-radius: 0.5rem;
 
 }
 

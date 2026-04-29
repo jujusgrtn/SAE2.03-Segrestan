@@ -17,6 +17,12 @@ DataMovie.getAllMovies = async function(){
     return data;
 }
 
+DataMovie.getAllCategories = async function(){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=readcategories");
+    let data = await answer.json();
+    return data;
+}
+
 DataMovie.addMovie = async function(formData){
     let config = {
         method: "POST",
@@ -34,3 +40,9 @@ DataMovie.requestMovieDetails = async function(id){
 }
 
 export {DataMovie};
+
+DataMovie.getMoviesByCategory = async function(id_category){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=getmoviesbycategory&id_category=" + id_category);
+    let data = await answer.json();
+    return data;
+}

@@ -77,3 +77,16 @@ function getMovieDetailController(){
     $movie = getMovie($id);
     return $movie;
 }
+
+function getMoviesByCategoryController(){
+    if (isset($_REQUEST['id_category'])==false || empty($_REQUEST['id_category'])==true){
+        return false;
+    }
+    $id_category = (int)$_REQUEST['id_category'];
+    $movies = getMoviesByCategory($id_category);
+    return $movies;
+}
+
+function readCategoriesController(){
+    return getAllCategories();
+}
