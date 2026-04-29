@@ -68,6 +68,6 @@
 }
 
 .navbar__menu-item:hover {
-  background-color: var(--color-gray-dark);
+  text-decoration: underline;
 }
 
