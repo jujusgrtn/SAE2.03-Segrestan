@@ -1,0 +1,21 @@
+<div class="profile__form">
+    <h2 class="profile__form-title">Ajouter un profil</h2>
+    <form class="profile__form-form">
+        <div class="profile__form-field">
+            <input class="profile__form-input" type="text" id="profile-name" name="name" placeholder="Nom" required />
+        </div>
+        <div class="profile__form-field">
+            <input class="profile__form-input" type="text" id="profile-avatar" name="avatar" placeholder="nom fichier avatar" />
+        </div>
+        <div class="profile__form-field">
+            <select class="profile__form-input" id="profile-minage" name="min_age">
+                <option value="0">Tous publics</option>
+                <option value="12">12+</option>
+                <option value="16">16+</option>
+                <option value="18">18+</option>
+            </select>
+        </div>
+        <div id="profile-message" class="profile__form-message"></div>
+        <button class="profile__form-btn" type="button" onclick="C.handlerAddProfile()">Ajouter le profil</button>
+    </form>
+</div>

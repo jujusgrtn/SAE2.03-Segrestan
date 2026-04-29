@@ -92,3 +92,17 @@ function getMoviesByCategory($id_category){
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res;
 }
+
+function addProfile($name, $avatar, $min_age){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "INSERT INTO Profile (name, avatar, min_age) 
+            VALUES (:name, :avatar, :min_age)";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':min_age', $min_age, PDO::PARAM_INT);
+    $stmt->execute();
+    $res = $stmt->rowCount();
+    return $res;
+}

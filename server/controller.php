@@ -90,3 +90,19 @@ function getMoviesByCategoryController(){
 function readCategoriesController(){
     return getAllCategories();
 }
+
+function addProfileController() {
+    if (isset($_REQUEST['name'])==false || empty($_REQUEST['name'])==true){
+        return false;
+    }
+     if (isset($_REQUEST['min_age'])==false || empty($_REQUEST['min_age'])==true){
+        return false;
+    }
+
+    $name = $_REQUEST['name'];
+    $avatar = $_REQUEST['avatar'];
+    $min_age = (int)$_REQUEST['min_age'];
+
+    $result = addProfile($name, $avatar, $min_age);
+    return $result;
+}

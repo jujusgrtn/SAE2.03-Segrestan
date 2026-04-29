@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 // Forcer l'affichage des erreurs à l'écran
 ini_set('display_errors', 1);
+error_reporting(E_ALL);
 ini_set('display_startup_errors', 1);
 
 /** ARCHITECTURE PHP SERVEUR : Rôle du fichier script.php
@@ -78,6 +79,10 @@ if ( isset($_REQUEST['todo']) ){
 
       case 'getmoviesbycategory':
         $data = getMoviesByCategoryController();
+        break;
+
+      case 'addprofile':
+        $data = addProfileController();
         break;
 
       default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <title>SAE2.03 ADMIN</title>
@@ -8,13 +8,15 @@
   </head>
   <body>
     <section id="log"></section>
+
     <section id="content"></section>
-  
 
     <script type="module">
       import { Log } from "./component/Log/script.js";
       import { NewMovie } from "./component/FormAddMovie/script.js";
       import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfile } from "./data/dataProfile.js";
+      import { ProfileForm } from "./component/ProfileForm/script.js";
 
       window.C = {};
 
@@ -27,7 +29,15 @@
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
-          V.renderNewMovie("C.handlerAddMovie()");
+        let content = document.querySelector("#content");
+        content.innerHTML = NewMovie.format("C.handlerAddMovie()") + ProfileForm.format();
+      };
+
+      C.handlerAddProfile = async function () {
+        let form = document.querySelector(".profile__form-form");
+        let formData = new FormData(form);
+        let res = await DataProfile.addProfile(formData);
+        V.renderLog(res);
       };
 
       window.V = {};
@@ -41,9 +51,14 @@
         let content = document.querySelector("#content");
         let html = NewMovie.format(handler);
         console.log("Le code renvoie :" + html);
-        if (content){
+        if (content) {
           content.innerHTML = html;
         }
+      };
+
+      V.renderProfileForm = function () {
+        let content = document.querySelector("#content");
+        content.innerHTML = ProfileForm.format();
       };
       C.start();
     </script>
