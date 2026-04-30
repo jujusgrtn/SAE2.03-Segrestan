@@ -39,10 +39,17 @@ DataMovie.requestMovieDetails = async function(id){
     return data;
 }
 
-export {DataMovie};
-
 DataMovie.getMoviesByCategory = async function(id_category){
     let answer = await fetch(HOST_URL + "/server/script.php?todo=getmoviesbycategory&id_category=" + id_category);
     let data = await answer.json();
     return data;
 }
+
+DataMovie.addProfile = async function(formData){
+    let answer = await fetch(HOST_URL + "/server/script.php?todo=addprofile");
+        let data = await answer.json();
+        return data;
+    };
+
+
+export {DataMovie};

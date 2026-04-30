@@ -1,0 +1,66 @@
+:root {
+    --color-bib: rgb(22, 19, 31);
+    --color-mh: rgb(240, 217, 228);
+    --color-decant: rgb(193, 160, 172);
+    --color-ff: rgb(74, 63, 75);
+    --color-moon: rgb(128, 108, 121);
+}
+
+.home__container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bib);
+    font-family: sans-serif;
+    color: var(--color-mh);
+}
+
+.home__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.home__subtitle {
+    font-size: 1rem;
+    color: var(--color-decant);
+    margin-bottom: 3rem;
+}
+
+.home__buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+.home__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12rem;
+    height: 8rem;
+    border-radius: 1rem;
+    border: 2px solid var(--color-ff);
+    background-color: var(--color-ff);
+    color: var(--color-mh);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.home__btn:hover {
+    background-color: var(--color-moon);
+    border-color: var(--color-mh);
+}
+
+.home__btn--admin {
+    border-color: var(--color-decant);
+    background-color: var(--color-bib);
+}
+
+.home__btn--admin:hover {
+    background-color: var(--color-ff);
+    border-color: var(--color-mh);
+}

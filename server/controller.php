@@ -106,3 +106,9 @@ function addProfileController() {
     $result = addProfile($name, $avatar, $min_age);
     return $result;
 }
+
+function getProfilesController(){
+    $profiles = getProfiles();
+    return $profiles;
+}
+

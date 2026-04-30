@@ -15,4 +15,10 @@
   --color-fg: var(--color-white);
   --color-bg: var(--color-gray-dark);
   --color-accent: var(--color-green);
+
+  --color-bib: rgb(22, 19, 31);
+  --color-mh: rgb(240, 217, 228);
+  --color-decant: rgb(193, 160, 172);
+  --color-ff: rgb(74, 63, 75); 
+  --color-moon: rgb(128, 108, 121);
 }
