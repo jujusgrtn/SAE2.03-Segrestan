@@ -15,6 +15,7 @@ MovieDetail.format = function(movie, isFavorite, hFavorite) {
     html = html.replace("{{trailer}}", movie.trailer);
     html = html.replace("{{hFavorite}}", hFavorite);
     html = html.replace("{{favoriteLabel}}", isFavorite ? " Retirer des favoris" : " Ajouter aux favoris");
+    html = html.replace("{{favoriteClass}}", isFavorite ? "btn__remove" : "btn__add");
 
     return html;
 }

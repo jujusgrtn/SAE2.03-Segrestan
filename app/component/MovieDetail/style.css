@@ -81,3 +81,28 @@
     display: block;
 }
 
+.movie__detail-favorite {
+    padding: 0.5rem 1rem;
+    border-radius: 1.25rem;
+    background: transparent;
+    color: var(--color-gray-dark);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn__add {
+    border: 0.125rem solid green;
+}
+
+.btn__add:hover {
+    background: green;
+}
+
+.btn__remove {
+    border: 0.125rem solid red;
+}
+
+.btn__remove:hover {
+    background: red;
+}
