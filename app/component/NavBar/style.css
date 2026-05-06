@@ -52,7 +52,7 @@
   padding: 0.25rem 0;
   min-width: 12rem;
   box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
-  z-index: 1; /*utilisation de l'IA pour résoudre mon problème de menu qui se fait recouvrir par les autres éléments de la page, j'ai ajouté un z-index pour que le menu soit au dessus des autres éléments*/
+  z-index: 1;
 }
 
 .navbar__item-menu:hover 
@@ -69,5 +69,10 @@
 
 .navbar__menu-item:hover {
   text-decoration: underline;
+}
+
+.navbar__profile-name:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 

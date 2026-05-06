@@ -22,7 +22,12 @@ require("model.php");
 
 
 function readMoviesController(){
-    $movies = getAllMovies();
+    if (isset($_REQUEST['age']) == false || empty($_REQUEST['age']) == true){
+        $age = 0;
+    } else {
+        $age = (int)$_REQUEST['age'];
+    }
+    $movies = getAllMovies($age);
     return $movies;
 }
 
@@ -100,7 +105,7 @@ function addProfileController() {
     }
 
     $name = $_REQUEST['name'];
-    $avatar = $_REQUEST['avatar'];
+    $avatar = isset($_REQUEST['avatar']) ? $_REQUEST['avatar'] : '';
     $min_age = (int)$_REQUEST['min_age'];
 
     $result = addProfile($name, $avatar, $min_age);
@@ -112,3 +117,34 @@ function getProfilesController(){
     return $profiles;
 }
 
+function addFavoriteController(){
+    if (isset($_REQUEST['id_profile'])==false || empty($_REQUEST['id_profile'])==true){
+        return false;
+    }
+    if (isset($_REQUEST['id_movie'])==false || empty($_REQUEST['id_movie'])==true){
+        return false;
+    }
+    $id_profile = (int)$_REQUEST['id_profile'];
+    $id_movie = (int)$_REQUEST['id_movie'];
+    return addFavorite($id_profile, $id_movie);
+}
+
+function getFavoritesController(){
+    if (isset($_REQUEST['id_profile'])==false || empty($_REQUEST['id_profile'])==true){
+        return false;
+    }
+    $id_profile = (int)$_REQUEST['id_profile'];
+    return getFavorites($id_profile);
+}
+
+function removeFavoriteController(){
+    if (isset($_REQUEST['id_profile'])==false || empty($_REQUEST['id_profile'])==true){
+        return false;
+    }
+    if (isset($_REQUEST['id_movie'])==false || empty($_REQUEST['id_movie'])==true){
+        return false;
+    }
+    $id_profile = (int)$_REQUEST['id_profile'];
+    $id_movie = (int)$_REQUEST['id_movie'];
+    return removeFavorite($id_profile, $id_movie);
+}

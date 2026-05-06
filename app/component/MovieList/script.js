@@ -1,3 +1,5 @@
+
+
 let templateFile = await fetch("./component/MovieList/template.html");
 let template = await templateFile.text();
 let templateliFile = await fetch("component/MovieList/templatelist.html")

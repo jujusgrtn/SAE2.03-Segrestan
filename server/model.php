@@ -19,13 +19,14 @@ define("DBLOGIN", "segrestan1");
 define("DBPWD", "segrestan1");
 
 
-function getAllMovies(){
+function getAllMovies($age=0){
     // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     // Requête SQL pour récupérer le menu avec des paramètres
-    $sql = "select id, name, image from Movie";
+    $sql = "select id, name, image from Movie WHERE min_age <= :age";
     // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':age', $age, PDO::PARAM_INT);
     // Exécute la requête SQL
     $stmt->execute();
     // Récupère les résultats de la requête sous forme d'objets
@@ -113,4 +114,42 @@ function getProfiles(){
     $stmt->execute();
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res;
+}
+
+function addFavorite($id_profile, $id_movie){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT id FROM Favorite WHERE id_profile = :id_profile AND id_movie = :id_movie";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id_profile', $id_profile, PDO::PARAM_INT);
+    $stmt->bindParam(':id_movie', $id_movie, PDO::PARAM_INT);
+    $stmt->execute();
+    if ($stmt->fetch()) return "Déjà en favori";
+
+    $sql = "INSERT INTO Favorite (id_profile, id_movie) VALUES (:id_profile, :id_movie)";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id_profile', $id_profile, PDO::PARAM_INT);
+    $stmt->bindParam(':id_movie', $id_movie, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->rowCount();
+}
+
+function getFavorites($id_profile){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT Movie.id, Movie.name, Movie.image FROM Movie 
+            JOIN Favorite ON Movie.id = Favorite.id_movie 
+            WHERE Favorite.id_profile = :id_profile";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id_profile', $id_profile, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function removeFavorite($id_profile, $id_movie){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "DELETE FROM Favorite WHERE id_profile = :id_profile AND id_movie = :id_movie";
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id_profile', $id_profile, PDO::PARAM_INT);
+    $stmt->bindParam(':id_movie', $id_movie, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->rowCount();
 }
