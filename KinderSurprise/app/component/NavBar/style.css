@@ -3,76 +3,167 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 3rem;
-  color: var(--color-fg);
-  background-color: var(--color-bg);
+  padding: 0.75rem 1rem;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--ff-sans);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.navbar__list {
+.navbar__left {
   display: flex;
-  gap: 1rem;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: 1rem;
 }
 
-.navbar__item {
-  --_offset: 0.2rem;
-  padding: 0.5rem 1rem;
-  text-decoration: underline;
-  text-decoration-thickness: 0.1rem;
-  text-underline-offset: var(--_offset);
+.navbar__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: text-underline-offset 0.2s ease-in-out;
+  padding: 0.5rem;
 }
 
-.navbar__item:hover {
-  --_offset: 0.5rem;
+.navbar__burger-bar {
+  display: block;
+  width: 1.5rem;
+  height: 0.15rem;
+  background-color: var(--color-white);
+  border-radius: 0.1rem;
+  transition: background-color 0.2s;
 }
 
-.navbar__item-menu {
-  position: relative;
+.navbar__burger:hover .navbar__burger-bar {
+  background-color: var(--color-gray);
 }
 
-.navbar__item-menu{
-  display: inline-block;
+
+
+.navbar__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+
+.navbar__overlay--open {
+  display: block;
 }
 
 .navbar__menu {
   display: none;
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 0;
   left: 0;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-gray-dark);
-  border-radius: 0.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0.25rem 0;
-  min-width: 12rem;
-  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  width: 20rem;
+  background-color: hsl(0, 0%, 12%);
+  padding: 3rem 2rem 2rem 2rem;
+  z-index: 150;
+  overflow-y: auto;
 }
 
-.navbar__item-menu:hover 
-.navbar__menu,
-.navbar__menu:hover {
+.navbar__menu--open {
   display: block;
 }
 
-.navbar__menu-item {
-  padding: 0.5rem 1rem;
+.navbar__close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s;
+}
+
+.navbar__close:hover {
+  color: var(--color-gray);
+}
+
+.navbar__item_accueil {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-arte-orange);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.navbar__item_accueil:hover {
+  color: var(--color-white);
+}
+
+.navbar__menu-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem;
+}
+
+.navbar__menu-list li {
+  margin: 0;
+}
+
+.navbar__menu-item {
+  font-size: 1rem;
+  color: var(--color-white);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0.25rem 0;
 }
 
 .navbar__menu-item:hover {
-  text-decoration: underline;
+  color: var(--color-gray);
 }
 
-.navbar__profile-name:hover {
-  text-decoration: underline;
+.navbar__profile {
   cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-gray-light);
+  padding: 0.5rem 0.75rem;
+  transition: color 0.2s ease;
 }
 
+.navbar__profile:hover {
+  color: var(--color-arte-orange);
+}
+
+.navbar__profile-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.1rem solid var(--color-gray);
+    transition: border-color 0.2s ease;
+}
+
+.navbar__profile:hover .navbar__profile-avatar {
+    border-color: var(--color-arte-orange);
+}
+
+@media (width > 64rem) {
+  .navbar {
+    padding: 0.75rem 3rem;
+  }
+
+  .navbar__menu {
+    width: 30rem ;
+  }
+
+  .navbar__menu-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 4rem;
+  }
+
+  .navbar__menu-item {
+    font-size: 1.25rem;
+  }
+}

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--color-black);
+    min-height: 100vh;
 }
 
 .profile__form {
@@ -11,12 +13,15 @@
     max-width: 30rem;
     width: 100%;
     font-family: var(--ff-sans);
+    background-color: var(--color-gray-dark);
+    color: var(--color-fg);
 }
 
 .profile__form-title {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: var(--color-fg);
 }
 
 .profile__form-form {
@@ -30,14 +35,36 @@
     border-radius: 0.5rem;
     border: 1px solid var(--color-gray);
     width: 100%;
+    background-color: var(--color-black);
+    color: var(--color-fg);
+    font-family: var(--ff-sans);
+}
+
+.profile__form-input::placeholder {
+    color: var(--color-gray);
+}
+
+.profile__form-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
 }
 
 .profile__form-btn {
     padding: 0.5rem;
     border-radius: 0.5rem;
-    background-color: var(--color-green);
+    background-color: var(--color-accent);
     color: var(--color-white);
     cursor: pointer;
+    font-family: var(--ff-sans);
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.profile__form-btn:hover {
+    background-color: var(--color-gray-dark);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
 }
 
 .profile__form-message--success {

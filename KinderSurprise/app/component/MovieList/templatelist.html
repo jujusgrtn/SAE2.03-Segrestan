@@ -1,3 +1,8 @@
+<h2 class="section__title">Films populaires</h2>
 <div class="movie__list">
-    {{movies}}
+    <button class="movie__carousel-btn movie__carousel-btn--left" onclick="document.querySelector('.movie__list-track').scrollBy({left: -300, behavior: 'smooth'})">‹</button>
+    <div class="movie__list-track">
+        {{movies}}
+    </div>
+    <button class="movie__carousel-btn movie__carousel-btn--right" onclick="document.querySelector('.movie__list-track').scrollBy({left: 300, behavior: 'smooth'})">›</button>
 </div>

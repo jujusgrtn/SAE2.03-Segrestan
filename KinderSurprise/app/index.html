@@ -9,6 +9,7 @@
 
   <body>
     <header id="header"></header>
+    <div id="categories-bar"></div>
 
     <section id="content"></section>
 
@@ -37,6 +38,13 @@
         V.renderProfileSelector(profiles);
       };
 
+      C.toggleBurger = function () {
+        let menu = document.getElementById("navbar-menu");
+        let overlay = document.getElementById("navbar-overlay");
+        menu.classList.toggle("navbar__menu--open");
+        overlay.classList.toggle("navbar__overlay--open");
+      };
+
       C.handlerSelectProfile = async function (profileId) {
         let profiles = await DataProfile.read();
         let profile = profiles.find((p) => p.id == profileId);
@@ -53,7 +61,10 @@
           profile.name,
           "C.handlerChangeProfile()",
           "C.handlerFavorites()",
+          `../server/images/avatar/${profile.avatar}`
         );
+
+        V.renderCategoriesBar(categories);
         await C.handlerAccueil();
       };
 
@@ -98,18 +109,18 @@
       };
 
       C.handlerFavorite = async function (id_movie) {
-    let favorites = await DataMovie.getFavorites(window.currentProfile.id);
-    let isFavorite = favorites.some((fav) => fav.id == id_movie);
-    
-    if (isFavorite) {
-        await DataMovie.removeFavorite(window.currentProfile.id, id_movie);
-        alert("Film retiré de vos favoris !");
-    } else {
-        await DataMovie.addFavorite(window.currentProfile.id, id_movie);
-        alert("Film ajouté à vos favoris !");
-    }
-    await C.handlerDetail(id_movie);
-};
+        let favorites = await DataMovie.getFavorites(window.currentProfile.id);
+        let isFavorite = favorites.some((fav) => fav.id == id_movie);
+
+        if (isFavorite) {
+          await DataMovie.removeFavorite(window.currentProfile.id, id_movie);
+          alert("Film retiré de vos favoris !");
+        } else {
+          await DataMovie.addFavorite(window.currentProfile.id, id_movie);
+          alert("Film ajouté à vos favoris !");
+        }
+        await C.handlerDetail(id_movie);
+      };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
@@ -128,6 +139,7 @@
         profileName,
         hProfile,
         hFavorites,
+        avatar,
       ) {
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(
@@ -137,6 +149,7 @@
           profileName,
           hProfile,
           hFavorites,
+          avatar,
         );
       };
 
@@ -161,9 +174,20 @@
         );
       };
 
+      V.renderCategoriesBar = function (categories) {
+        let bar = document.querySelector("#categories-bar");
+        let html = "";
+        for (let category of categories) {
+          html += `<button class="categories-bar__item" onclick="C.handlerFilterByCategory(${category.id})">${category.name}</button>`;
+        }
+        bar.innerHTML = html;
+      };
+
       V.renderProfileSelector = function (profiles) {
         let header = document.querySelector("#header");
         header.innerHTML = "";
+        let bar = document.querySelector("#categories-bar");
+        bar.innerHTML = "";
         let content = document.querySelector("#content");
         content.innerHTML = ProfileSelector.format(profiles);
       };

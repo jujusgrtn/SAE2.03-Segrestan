@@ -1,16 +1,25 @@
-<nav class="navbar font-sans">
-  <ul class="navbar__list">
-    <li class="navbar__item" onclick="{{hAccueil}}">Accueil</li>
-    <li class="navbar__item" onclick="{{hAbout}}">About</li>
-    <li class="navbar__item navbar__item-menu">
-      <span>Catégories ▾</span>
-      <ul class="navbar__menu">
-        {{categories}}
-      </ul>
-    </li>
-    <li class="navbar__item navbar__item-fav" onclick="{{hFavorites}}">Favoris</li>
-  </ul>
+<nav class="navbar">
+  <div class="navbar__left">
+    <button class="navbar__burger" onclick="C.toggleBurger()" aria-label="Menu">
+      <span class="navbar__burger-bar"></span>
+      <span class="navbar__burger-bar"></span>
+      <span class="navbar__burger-bar"></span>
+    </button>
+    <span class="navbar__item_accueil" onclick="{{hAccueil}}">Accueil</span>
+  </div>
+
+  <div class="navbar__overlay" id="navbar-overlay" onclick="C.toggleBurger()"></div>
+
+  <div class="navbar__menu" id="navbar-menu">
+    <button class="navbar__close" onclick="C.toggleBurger()">✕</button>
+    <ul class="navbar__menu-list">
+      <li class="navbar__menu-item" onclick="C.toggleBurger(); {{hAbout}}">About</li>
+      {{categories}}
+      <li class="navbar__menu-item" onclick="C.toggleBurger(); {{hFavorites}}">Favoris</li>
+    </ul>
+  </div>
+
   <div class="navbar__profile" onclick="{{hProfile}}">
-    <span class="navbar__profile-name">{{profileName}}</span>
+    <img class="navbar__profile-avatar" src="{{profileAvatar}}" alt="{{profileName}}" />
   </div>
 </nav>

@@ -1,0 +1,42 @@
+#categories-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 1rem;
+    background-color: var(--color-black);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+} 
+
+#categories-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.categories-bar__item {
+    font-family: var(--ff-sans);
+    background-color: hsl(0, 0%, 20%);
+    color: var(--color-white);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    scroll-snap-align: start; 
+    flex-shrink: 0; 
+}
+
+.categories-bar__item:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+@media (min-width: 64rem) {
+    #categories-bar {
+        justify-content: center;
+        overflow-x: visible;
+    }
+}
